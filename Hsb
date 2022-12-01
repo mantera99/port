@@ -1,3 +1,4 @@
+cat <<EOF >>/etc/nginx/conf.d/alone.conf
 server {
 # Listen on port 80 for HTTP connections
 listen 81;  # // Xray (Full Listen Port)
@@ -52,7 +53,7 @@ if ($http_upgrade != "Upgrade") {
 rewrite /(.*) /vless break;
       }
 proxy_redirect off;
-proxy_pass http://127.0.0.1:10001;
+proxy_pass http://127.0.0.1:14016;
 proxy_http_version 1.1;
 proxy_set_header Upgrade $http_upgrade;
 proxy_set_header Connection "upgrade";
@@ -69,7 +70,7 @@ proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
                    rewrite /(.*) /vmess break;
       }
                    proxy_redirect off;
-                   proxy_pass http://127.0.0.1:10002;
+                   proxy_pass http://127.0.0.1:14017;
                    proxy_http_version 1.1;
                    proxy_set_header Upgrade $http_upgrade;
                    proxy_set_header Connection "upgrade";
@@ -87,7 +88,7 @@ if ($http_upgrade != "Upgrade") {
 rewrite /(.*) /trojan-ws break;
       }
 proxy_redirect off;
-proxy_pass http://127.0.0.1:10003;
+proxy_pass http://127.0.0.1:25432;
 proxy_http_version 1.1;
 proxy_set_header Upgrade $http_upgrade;
 proxy_set_header Connection "upgrade";
@@ -168,3 +169,4 @@ grpc_pass grpc://127.0.0.1:10008;
 
          }
  }
+EOF
