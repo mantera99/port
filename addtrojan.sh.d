@@ -2,8 +2,6 @@
 # (C) Copyright 2021-2022
 # ==================================================================
 # Name        : VPN Script Quick Installation Script
-# Base        : WildyDev21
-# Mod By      : Manternet
 # ==================================================================
 
 # // Export Color & Information
@@ -19,19 +17,6 @@ export INFO="[${YELLOW} INFO ${NC}]";
 export OKEY="[${GREEN} OKEY ${NC}]";
 
 # // Exporting maklumat rangkaian
-source /root/ip-detail.txt;
-export IP_NYA="$IP";
-
-# // Getting                                                                                                        
-export IZIN=$(curl -sS https://raw.githubusercontent.com/Manpokr/mon/main/ip | awk '{print $4}' | grep $IP_NYA )    
-if [[ $IP_NYA = $IZIN ]]; then                                                                                      
-     SKIP=true;                                                                                                     
-     clear
-else                                                                                                                
-     echo -e "${ERROR} PERMISION DENIED";                                                                           
-     rm -f addtrojan;                                                                                               
-  exit 0;                                                                                                           
-fi
 
 # // Add
 export none="$(cat ~/log-install.txt | grep -w "XRAY VLESS WS NTLS" | cut -d: -f2|sed 's/ //g')";
@@ -99,31 +84,31 @@ systemctl restart xray@none.service
 systemctl restart xray@grpc.service
 
 clear;
-echo -e "=====-XRAY-TROJAN/WS&TCP&GRPC-=====";
-echo -e "REMARKS   = ${user}";
-echo -e "MYIP      = ${IP_NYA}";
-echo -e "SUBDOMAIN = ${dom}";
-echo -e "PORT TLS  = ${xtls}";
-echo -e "PORT NONE = ${none}";
-echo -e "PASSWORD  = ${uuid}";
-echo -e "===================================";
-echo -e "TROJAN TCP TLS LINK";
-echo -e " ${trojanlink0} ";
-echo -e "";
-echo -e "===================================";
-echo -e "TROJAN WS TLS LINK";
-echo -e " ${trojanlink1} ";
-echo -e "";
-echo -e "===================================";
-echo -e "TROJAN WS LINK";
-echo -e " ${trojanlink2} ";
-echo -e "";
-echo -e "===================================";
-echo -e "TROJAN GRPC TLS LINK";
-echo -e " ${trojanlink3} ";
-echo -e "";
-echo -e "===================================";
-echo -e "EXPIRED   = $exp1";
-echo -e "";
+echo -e "=====-XRAY-TROJAN/WS&TCP&GRPC-=====
+     REMARKS   = ${user}
+     MYIP      = ${IP_NYA}
+     SUBDOMAIN = ${dom}
+     PORT TLS  = ${xtls}
+     PORT NONE = ${none}
+     PASSWORD  = ${uuid}
+   ===================================
+     TROJAN TCP TLS LINK
+     ${trojanlink0}
+
+   ===================================
+     TROJAN WS TLS LINK
+     ${trojanlink1} 
+
+   ===================================
+     TROJAN WS LINK
+     ${trojanlink2}
+
+   ===================================
+     TROJAN GRPC TLS LINK
+     ${trojanlink3}
+
+   ===================================
+     EXPIRED   = $exp1
+";
 echo -e -n "PRESS [ \e[32mENTER\e[37m ] TO MENU "; read  menu                                 
 menu
